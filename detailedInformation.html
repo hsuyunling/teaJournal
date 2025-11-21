@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="information.css">
+    
+    <title>詳細資訊</title>
+</head>
+<body>
+        <a href="index.html" class="btnBack">返回</a>
+
+    <!-- <div class="cart_options">
+        <a href="cart.html">查看購物車</a>
+        <button>新增至購物車</button>
+    </div> -->
+
+    <div class="information">
+        <div class="top-bar">
+            <img src="./images/farmer1.jpg" alt="">
+
+            <div class="name_location">
+                <h1 class="name">永安茶園</h1>
+                <h1 class="location"><a href="https://www.google.com/maps/@29.9672703,-98.2908928,7z?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D">茶園位置</a></h1>
+            </div>
+
+        </div>
+
+        <div class="process">
+            <ul class="interactiveArea">
+                <li class="steps active">
+                    <p>施肥</p>
+                </li>
+                <li class="steps">
+                    <p>扦插</p>
+                </li>
+                <li class="steps">
+                    <p>採收</p>
+                </li>
+                <li class="steps">
+                    <p>送廠</p>
+                </li>
+            </ul>
+
+            <img src="./images/step1.jpg" alt="" id="stepImg" class="stepImg">
+
+            <div class="text" id="text">施肥是茶樹生長的重要階段。農民會依照季節與茶樹的生長狀況，補充適量的有機肥或複合肥，讓茶樹吸收足夠的養分。這不僅能促進嫩芽生長，也能提升茶葉的香氣與品質。</div>
+        </div>
+
+        <div class="products"></div>
+    </div>
+
+    <footer></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $('.steps').click(function(){
+                $('.steps').removeClass('active');
+                $(this).addClass('active');
+                changeImg();
+            });
+
+        });
+
+        function changeImg(){
+            const stepImg = document.getElementById('stepImg');
+            const steps = document.querySelectorAll('.steps');
+            steps.forEach((step, index) => {
+                step.addEventListener('click', () => {
+                    switch(index){
+                        case 0:
+                            stepImg.src = './images/step1.jpg';
+                            $('#text').text('施肥是茶樹生長的重要環節，適當的施肥能促進茶樹健康成長，提高茶葉品質。我們採用有機肥料，確保茶葉的純淨與安全。');
+                            break;
+                        case 1:
+                            stepImg.src = './images/step2.jpg';
+                            $('#text').text('扦插是茶樹繁殖常用的方法。農民會選擇健康的枝條，剪成適當長度後插入濕潤的培養土中，等待其生根。這種方式能保留母株的優良特性，確保新茶樹品質穩定。');
+
+                            break;
+                        case 2:
+                            stepImg.src = './images/step3.jpg';
+                            $('#text').text('茶葉的採收時間通常根據嫩芽的成熟度決定。採收時需輕柔，避免損傷茶葉。不同季節的茶有不同風味，春茶清香、夏茶濃烈、秋茶則回甘。採收後必須迅速送入製茶程序以保持新鮮。');
+                            break;
+                        case 3:
+                            stepImg.src = './images/step4.jpg';
+                            $('#text').text('採下的鮮葉會立即送往製茶廠進行萎凋、揉捻、發酵與烘焙等步驟。這個階段決定了茶的香氣與口感。工廠內的溫濕控制與師傅的經驗都是確保茶葉品質的關鍵。');
+                            break;
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

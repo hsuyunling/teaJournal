@@ -1,0 +1,139 @@
+@import url('reset.css');
+body{
+    font-family: '微軟正黑體';
+    font-size: 20px;
+    background-color: rgb(221, 221, 221);
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 0.495);
+    border: 1px solid rgba(219, 219, 219, 0.726);
+    box-shadow: 0 0 20px rgba(145, 145, 145, 0.394);
+
+    width: 680px;
+    border-radius: 30px;
+    margin: 0 auto;
+    margin-top: 120px;
+
+    padding: 40px;
+    overflow: hidden;
+}
+
+.loginLink{
+    display: block;
+    height: 50px; width: 50px;
+    border-radius: 30px;
+
+    text-decoration: none;
+    background-color: #ffffff6c;
+    text-align: center;
+    line-height: 50px;
+    box-shadow: 0 0 7px rgba(128, 128, 128, 0.52);
+}
+
+i{
+    color: rgb(35, 35, 35);
+}
+
+.loginLink:hover{
+    background-color: #5e5e5e5a;
+
+}
+
+.loginLink:hover i{
+    color: white;
+}
+
+
+img{
+    width: 80%;
+    margin-left: 30px;
+    border-radius: 30px;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    margin: 10px 0 40px 10px;
+    letter-spacing: 5px;
+}
+
+li{
+    margin: 30px auto;
+    width: 80%;
+    height: 70px;
+    
+}
+
+input[type="text"], input[type="password"]{
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+
+    border: 1px solid rgba(219, 219, 219, 0.726);
+    border-radius: 10px;
+    padding-left: 20px;
+    margin: 10px 0;
+
+    background-color: rgba(168, 168, 168, 0.171);
+    color: rgb(50, 50, 50);
+}
+
+label{
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px; /* 留空間放圓圈 */
+    margin-right: 15px;
+}
+
+label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bdbdbddd;
+    border-radius: 50%;
+    background: #ffffff49;
+}
+
+input[type="radio"]:checked + label::before{
+    background: rgb(57, 71, 154);
+    border-color: rgb(57, 71, 154);
+}
+
+.btns{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 50px;
+
+}
+
+.registerBtn{
+    border: 0;
+    background-color: rgb(57, 71, 154);
+    height: 45px;
+    width: 100px;
+    border-radius: 15px;
+    font-size: 18px;
+    margin-right: 15px;
+
+    color: white;
+    line-height: 45px;
+
+    box-shadow: 0 0 7px rgba(128, 128, 128, 0.52);
+
+    transition: .2s;
+}
+
+.registerBtn:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(47, 74, 182);
+    box-shadow: 0 0 5px gray;
+
+    transform: scale(1.1);
+}
