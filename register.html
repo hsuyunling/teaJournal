@@ -6,6 +6,7 @@
     <title>登入揪團</title>
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="loginCondition.js" defer></script>
 
 </head>
 <body>
@@ -33,29 +34,7 @@
     </div>
 
     <footer style="height: 150px;"></footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const loginLink = document.querySelector('a[href="login.html"]');
-            const cartLink = document.querySelector('a[href="cart.html"]');
-        
-            // 取得登入狀態（true / false）
-            const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-        
-            // (A) 如果已登入 → 將「登入」改成「個人」
-            if (isLoggedIn) {
-                loginLink.textContent = "個人";
-                loginLink.href = "profile.html"; // demo：跳轉到個人頁
-            }
-        
-            // (B) 如果未登入 → 點購物車時強制導到登入頁
-            cartLink.addEventListener("click", (e) => {
-                if (!isLoggedIn) {
-                    e.preventDefault();
-                    window.location.href = "login.html";
-                }
-            });
-        });
-    </script>
+
         
 </body>
 </html>

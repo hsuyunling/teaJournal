@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="cart.css">
+    <script src="loginCondition.js" defer></script>
+
     <title>Document</title>
       
 </head>
@@ -156,89 +158,7 @@
         </ul>
     </div>
     <button class="checkout">結帳</button>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const carts = document.querySelectorAll(".cart");
-            const grandTotalEl = document.getElementById("grand-total");
-        
-            function updateGrandTotal() {
-                let sum = 0;
-        
-                carts.forEach(cart => {
-                    const checkbox = cart.querySelector(".check-item");
-                    const totalPriceEl = cart.querySelector(".total p:last-of-type");
-        
-                    if (checkbox.checked) {
-                        const val = parseInt(totalPriceEl.textContent.replace("＄", ""));
-                        sum += val;
-                    }
-                });
-        
-                grandTotalEl.textContent = `總金額：＄${sum}`;
-            }
-        
-            carts.forEach(cart => {
-                const priceText = cart.querySelector("p"); 
-                const unitPrice = parseInt(priceText.textContent.replace("＄", ""));
-        
-                const minusBtn = cart.querySelector(".amount button:first-of-type");
-                const plusBtn = cart.querySelector(".amount button:last-of-type");
-                const qtySpan = cart.querySelector(".amount span");
-                const totalPriceEl = cart.querySelector(".total p:last-of-type");
-        
-                const checkbox = cart.querySelector(".check-item");
-        
-                minusBtn.addEventListener("click", () => {
-                    let qty = parseInt(qtySpan.textContent);
-                    if (qty > 1) qty--;
-                    qtySpan.textContent = qty;
-                    totalPriceEl.textContent = `＄${qty * unitPrice}`;
-                    updateGrandTotal();
-                });
-        
-                plusBtn.addEventListener("click", () => {
-                    let qty = parseInt(qtySpan.textContent);
-                    qty++;
-                    qtySpan.textContent = qty;
-                    totalPriceEl.textContent = `＄${qty * unitPrice}`;
-                    updateGrandTotal();
-                });
-        
-                checkbox.addEventListener("change", updateGrandTotal);
-            });
-        });
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const loginLink = document.querySelector('a[href="login.html"]');
-                const cartLink = document.querySelector('a[href="cart.html"]');
-            
-                // 取得登入狀態（true / false）
-                const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-            
-                // (A) 如果已登入 → 將「登入」改成「個人」
-                if (isLoggedIn) {
-                    loginLink.textContent = "個人";
-                    loginLink.href = "profile.html"; // demo：跳轉到個人頁
-                }
-            
-                // (B) 如果未登入 → 點購物車時強制導到登入頁
-                cartLink.addEventListener("click", (e) => {
-                    if (!isLoggedIn) {
-                        e.preventDefault();
-                        window.location.href = "login.html";
-                    }
-                });
-            });
-        </script>
-        <script>
-            function demoLogout() {
-                localStorage.removeItem("loggedIn");
-                window.location.href = "index.html";
-            }
-        </script>
-            
-        
+
         
 </body>
 </html>
