@@ -6,13 +6,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="cart.css">
     <title>Document</title>
+      
 </head>
 <body>
+    <ul class="head-bar">
+        <i class="fa-brands fa-envira" style="margin-left: 50px;"></i>
+        <a href="index.html" class="logo">茶園日誌</a>
+        <li><a href="login.html">登入</a></li>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="products.html">產品概覽</a></li>
+        <li><a href="aboutuUs.html">關於我們</a></li>
+    </ul>
 
     <h1>購物車</h1>
     <div class="container">
         <ul>
             <li><div class="cart c1">
+                <label class="control control--checkbox">
+                    <input type="checkbox" class="check-item" />
+                    <div class="control__indicator"></div>
+                </label>                
                 <h2>永安茶園</h2>
                 <img src="./images/teaProduct2.png" alt="">
                 <h3>龜茶 文山包種茶</h3>
@@ -36,6 +49,10 @@
             </div></li>
 
             <li><div class="cart c2">
+                <label class="control control--checkbox">
+                    <input type="checkbox" class="check-item" />
+                    <div class="control__indicator"></div>
+                </label>                 
                 <h2>永安食蛇龜茶園</h2>
                 <img src="./images/teaProduct4.png" alt="">
                 <h3>金萱茶</h3>
@@ -58,6 +75,10 @@
             </div></li>
 
             <li><div class="cart c3">
+                <label class="control control--checkbox">
+                    <input type="checkbox" class="check-item" />
+                    <div class="control__indicator"></div>
+                </label>                 
                 <h2>永安水庫茶園</h2>
                 <img src="./images/teaProduct5.png" alt="">
                 <h3>文山包種茶</h3>
@@ -78,7 +99,11 @@
                     </div>
                 </div>
             </div></li>
-            <li><div class="cart c2">
+            <li><div class="cart c4">
+                <label class="control control--checkbox">
+                    <input type="checkbox" class="check-item" />
+                    <div class="control__indicator"></div>
+                </label>  
                 <h2>永安食蛇龜茶園</h2>
                 <img src="./images/teaProduct1.png" alt="">
                 <h3>龜茶 蜜香紅茶</h3>
@@ -100,7 +125,11 @@
                 </div>
             </div></li>
 
-            <li><div class="cart c3">
+            <li><div class="cart c5">
+                <label class="control control--checkbox">
+                    <input type="checkbox" class="check-item"/>
+                    <div class="control__indicator"></div>
+                </label>  
                 <h2>永安水庫茶園</h2>
                 <img src="./images/teaProduct3.png" alt="">
                 <h3>紅茶</h3>
@@ -121,8 +150,95 @@
                     </div>
                 </div>
             </div></li>
+            <li class="totalPrice">
+                <h2 id="grand-total">總金額：＄0</h2>
+            </li>
         </ul>
     </div>
     <button class="checkout">結帳</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carts = document.querySelectorAll(".cart");
+            const grandTotalEl = document.getElementById("grand-total");
+        
+            function updateGrandTotal() {
+                let sum = 0;
+        
+                carts.forEach(cart => {
+                    const checkbox = cart.querySelector(".check-item");
+                    const totalPriceEl = cart.querySelector(".total p:last-of-type");
+        
+                    if (checkbox.checked) {
+                        const val = parseInt(totalPriceEl.textContent.replace("＄", ""));
+                        sum += val;
+                    }
+                });
+        
+                grandTotalEl.textContent = `總金額：＄${sum}`;
+            }
+        
+            carts.forEach(cart => {
+                const priceText = cart.querySelector("p"); 
+                const unitPrice = parseInt(priceText.textContent.replace("＄", ""));
+        
+                const minusBtn = cart.querySelector(".amount button:first-of-type");
+                const plusBtn = cart.querySelector(".amount button:last-of-type");
+                const qtySpan = cart.querySelector(".amount span");
+                const totalPriceEl = cart.querySelector(".total p:last-of-type");
+        
+                const checkbox = cart.querySelector(".check-item");
+        
+                minusBtn.addEventListener("click", () => {
+                    let qty = parseInt(qtySpan.textContent);
+                    if (qty > 1) qty--;
+                    qtySpan.textContent = qty;
+                    totalPriceEl.textContent = `＄${qty * unitPrice}`;
+                    updateGrandTotal();
+                });
+        
+                plusBtn.addEventListener("click", () => {
+                    let qty = parseInt(qtySpan.textContent);
+                    qty++;
+                    qtySpan.textContent = qty;
+                    totalPriceEl.textContent = `＄${qty * unitPrice}`;
+                    updateGrandTotal();
+                });
+        
+                checkbox.addEventListener("change", updateGrandTotal);
+            });
+        });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const loginLink = document.querySelector('a[href="login.html"]');
+                const cartLink = document.querySelector('a[href="cart.html"]');
+            
+                // 取得登入狀態（true / false）
+                const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+            
+                // (A) 如果已登入 → 將「登入」改成「個人」
+                if (isLoggedIn) {
+                    loginLink.textContent = "個人";
+                    loginLink.href = "profile.html"; // demo：跳轉到個人頁
+                }
+            
+                // (B) 如果未登入 → 點購物車時強制導到登入頁
+                cartLink.addEventListener("click", (e) => {
+                    if (!isLoggedIn) {
+                        e.preventDefault();
+                        window.location.href = "login.html";
+                    }
+                });
+            });
+        </script>
+        <script>
+            function demoLogout() {
+                localStorage.removeItem("loggedIn");
+                window.location.href = "index.html";
+            }
+        </script>
+            
+        
+        
 </body>
 </html>

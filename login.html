@@ -151,7 +151,7 @@
                     <ul>
                         <li>帳號：<input type="text"></li>
                         <li>密碼：<input type="password"></li>
-                        <li class="btns"><button type="submit" class="loginBtn">登入</button>
+                        <li class="btns"><button class="loginBtn" onclick="demoLogin()">登入</button>
                             <a href="register.html" class="registerLink">註冊</a>
                         </li>
                     </ul>
@@ -162,5 +162,36 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="homepage.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginLink = document.querySelector('a[href="login.html"]');
+            const cartLink = document.querySelector('a[href="cart.html"]');
+        
+            // 取得登入狀態（true / false）
+            const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        
+            // (A) 如果已登入 → 將「登入」改成「個人」
+            if (isLoggedIn) {
+                loginLink.textContent = "個人";
+                loginLink.href = "profile.html"; // demo：跳轉到個人頁
+            }
+        
+            // (B) 如果未登入 → 點購物車時強制導到登入頁
+            cartLink.addEventListener("click", (e) => {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    window.location.href = "login.html";
+                }
+            });
+        });
+    </script>
+        
+    <script>
+        function demoLogin() {
+            localStorage.setItem("loggedIn", "true");
+            window.location.href = "index.html";  
+        }
+    </script>
+        
 </body>
 </html>

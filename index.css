@@ -1,3 +1,4 @@
+@import url('reset.css');
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -27,6 +28,16 @@ header{
     
 }
 
+.head-bar .logo, .head-bar .fa-brands{
+    margin-left: 10px;
+    float: left;
+    line-height: 50px;
+    font-size: 18px;
+
+    text-decoration: none;
+    color: #000;
+}
+
 .head-bar li {
     float: right;
     margin-right: 20px;
@@ -49,6 +60,50 @@ header{
     color: rgb(57, 71, 154);
     font-weight: bold;
 }
+
+/* 整個 dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+/* 下拉選單本體 */
+.dropdown .menu {
+    position: absolute;
+    top: 100%;
+    right: -10px;
+    display: none;        /* 預設隱藏 */
+    background-color: #ffffffa3;
+    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
+
+    border: 1px solid #ccc;
+    border-top: 0;
+    width: 200px;
+}
+
+/* 下拉項目 */
+.dropdown .menu li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+}
+
+.dropdown .menu li button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    padding-left: 30px;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* 懸浮出現 */
+.dropdown:hover .menu {
+    display: block;
+}  
+
 .carousel{
     box-sizing: border-box;
     width: 100%;
@@ -85,12 +140,21 @@ header{
     justify-content: space-between;
 
     margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgb(130, 130, 130);
+    padding: 30px 0;
+
+    background-color: #eeeeeec4;
+    border-radius: 20px;
 }
 
 .farmers h1{
     font-size: 20px;
+}
+
+.farmers .location{
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .farmers img{
@@ -99,26 +163,56 @@ header{
     object-fit: cover;
 
     border-radius: 500px;
+    margin-left: 40px;
 }
 
 .farmers div{
     /* border: 1px solid black; */
-    width: 600px;
+    width: 580px;
     line-height: 1.4;
     text-align: left;
 }
 
-.farmers div a{
+.farmers .labels ul{
+    margin-top: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-left: 0;
+}
+
+.farmers .labels li{
+    float: left;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.farmers .jinTea{
+    background-color: rgb(240, 218, 52);
+}
+
+.farmers .blackTea{
+    background-color: rgb(210, 106, 106);
+}
+
+.farmers .greenTea{
+    background-color: rgb(89, 181, 89);
+}
+
+.farmers .baoTea{
+    background-color: rgb(101, 148, 228);
+}
+
+.farmers div .btn{
     float: right;
-    margin-top: 80px;
-    margin-right: 40px;
+    margin-right: 10px;
 
     display: block;
     width: 80px;
     height: 30px;
     text-decoration: none;
     font-size: 12px;
-    line-height: 30px;
+    /* line-height: 30px; */
     background-color: rgb(57, 71, 154);
     color: white;
     text-align: center;
@@ -127,6 +221,11 @@ header{
     border: 0;
     border-radius: 10px;
 }
+
+.farmers div .buy{
+    margin-right: 40px;
+}
+
 
 footer{
     margin-top: 50px;

@@ -9,7 +9,16 @@
     <title>詳細資訊</title>
 </head>
 <body>
-        <a href="index.html" class="btnBack">返回</a>
+    <ul class="head-bar">
+        <i class="fa-brands fa-envira" style="margin-left: 50px;"></i>
+        <a href="index.html" class="logo">茶園日誌</a>
+        <li><a href="login.html">登入</a></li>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="products.html">產品概覽</a></li>
+        <li><a href="aboutuUs.html">關於我們</a></li>
+    </ul>
+
+    <a href="index.html" class="btnBack">返回</a>
 
     <!-- <div class="cart_options">
         <a href="cart.html">查看購物車</a>
@@ -92,5 +101,35 @@
             });
         }
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginLink = document.querySelector('a[href="login.html"]');
+            const cartLink = document.querySelector('a[href="cart.html"]');
+        
+            // 取得登入狀態（true / false）
+            const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        
+            // (A) 如果已登入 → 將「登入」改成「個人」
+            if (isLoggedIn) {
+                loginLink.textContent = "個人";
+                loginLink.href = "profile.html"; // demo：跳轉到個人頁
+            }
+        
+            // (B) 如果未登入 → 點購物車時強制導到登入頁
+            cartLink.addEventListener("click", (e) => {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    window.location.href = "login.html";
+                }
+            });
+        });
+    </script>
+    <script>
+        function demoLogout() {
+            localStorage.removeItem("loggedIn");
+            window.location.href = "index.html";
+        }
+    </script>
+        
 </body>
 </html>
