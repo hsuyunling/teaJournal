@@ -8,6 +8,167 @@
     <script src="loginCondition.js" defer></script>
 
     <title>詳細資訊</title>
+
+    <style>
+#farmers {
+    width: 900px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(145, 145, 145, 0.394);
+
+    position: relative;
+}
+
+#farmers ul{
+    display: block;
+    /* width: 230px; */
+}
+
+#farmers ul li{
+    width: 100%;
+}
+
+#farmers h3 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+#farmers a {
+    margin: 10px 0;
+    color: grey;
+}
+
+#farmers a:hover{
+    color: blue;
+}
+
+#farmers img {
+    width: 100px; height: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+    margin-right: 40px;
+}
+
+#farmers .btns{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    bottom: 30px;
+    right: 30px;
+}
+
+#farmers .btn{
+    float: right;
+    margin-right: 10px;
+
+    display: block;
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    /* line-height: 30px; */
+    background-color: rgb(57, 71, 154);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+
+    border: 0;
+    border-radius: 10px;
+}
+
+#farmers .btn a{
+    color: white;
+    text-decoration: none;
+    line-height: 30px;
+
+}
+#posts{
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post{
+  width: 270px;
+  height: 310px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+  padding: 20px;
+  margin: 30px 0 0;
+  font-family: '微軟正黑體';
+  transition: .2s;
+}
+
+/* .post:hover{
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.308);
+    transform: scale(1.05);
+} */
+
+
+.post-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-header h3{
+  font-size: 20px;
+}
+
+.post-date{
+  font-size: 14px;
+  color: gray;
+}
+
+.post img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+
+.post-content{
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1050px) {
+    #farmers {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #farmers img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #farmers .btns{
+        position: static;
+        margin: 30px 0;
+        justify-content: center;
+    }
+
+    .btnBack{
+        display: none;
+    }
+    
+}
+
+</style>
+
 </head>
 <body>
     <ul class="head-bar">
@@ -19,23 +180,9 @@
         <li><a href="aboutuUs.html">關於我們</a></li>
     </ul>
 
-    <a href="index.html" class="btnBack">返回</a>
+    <div id="farmers"></div>
 
-    <!-- <div class="cart_options">
-        <a href="cart.html">查看購物車</a>
-        <button>新增至購物車</button>
-    </div> -->
-
-    <div class="information">
-        <div class="top-bar">
-            <img src="./images/farmer1.jpg" alt="">
-
-            <div class="name_location">
-                <h1 class="name">永安茶園</h1>
-                <h1 class="location"><a href="https://www.google.com/maps/@29.9672703,-98.2908928,7z?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D">茶園位置</a></h1>
-            </div>
-
-        </div>
+    <!-- <div class="information">
 
         <div class="process">
             <ul class="interactiveArea">
@@ -58,10 +205,41 @@
             <div class="text" id="text">施肥是茶樹生長的重要階段。農民會依照季節與茶樹的生長狀況，補充適量的有機肥或複合肥，讓茶樹吸收足夠的養分。這不僅能促進嫩芽生長，也能提升茶葉的香氣與品質。</div>
         </div>
 
-        <div class="products"></div>
-    </div>
+    </div> -->
+
+    <div id="posts"></div>
+      
 
     <footer></footer>
+
+    <script src="farmers.js"></script>
+    <!-- <script>
+        const container = document.getElementById("farmers");
+        
+        // 取得 URL 參數
+        const urlParams = new URLSearchParams(window.location.search);
+        const farmerName = urlParams.get("name");
+        
+        // 篩選該農夫產品
+        const filtered = farmers.filter(p => p.name === farmerName);
+        
+        // 渲染
+        filtered.forEach(p => {
+            container.innerHTML = `
+                <img src="${p.img}" alt="">
+                <ul>
+                    <li><h3>${p.name}</h3></li>
+                    <li><a href="${p.location}" class="location">茶園位置</a></li>
+                </ul>
+                <ul class="btns">
+                    <li class="btn b2"><a href="live.html" target="_blank">看直播</button></a>
+                    <li class="btn b2"><a href="${p.buyLink}" class="buy">向他購買</a></li>
+                </ul>
+                
+            `;
+        });
+        </script> -->
+        <script src="post.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -102,7 +280,6 @@
             });
         }
     </script>
-
         
 </body>
 </html>

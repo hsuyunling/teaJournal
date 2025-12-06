@@ -4,8 +4,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="loginCondition.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Document</title>
+    <style>
+@import url('reset.css');
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+
+header{
+    height: 500px;
+    position: relative;
+}
+
+.head-bar{
+    margin-right: 50px;
+    width: 100%;
+    height: 50px;
+    background-color: #ffffffa3;
+    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
+
+    text-align: right;
+
+    transition: .5s;
+
+    float: left;
+    position: relative;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 40px;
+
+    
+}
+
+.head-bar .logo, .head-bar .fa-brands{
+    margin-left: 10px;
+    float: left;
+    line-height: 50px;
+    font-size: 18px;
+
+    text-decoration: none;
+    color: #000;
+}
+
+.head-bar li {
+    float: right;
+    margin-right: 20px;
+    line-height: 50px;
+    height: 100%;
+}
+
+.head-bar li:first-child{
+    margin-right: 100px;
+}
+
+.head-bar li a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+
+}
+
+.head-bar li a:hover{
+    color: rgb(57, 71, 154);
+    font-weight: bold;
+}
+
+/* 整個 dropdown */
+.dropdown {
+    position: relative;
+    list-style: none;
+}
+
+/* 下拉選單本體 */
+.dropdown .menu {
+    position: absolute;
+    top: 100%;
+    right: -10px;
+    display: none;        /* 預設隱藏 */
+    background-color: #ffffffa3;
+    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
+
+    border: 1px solid #ccc;
+    border-top: 0;
+    width: 200px;
+}
+
+/* 下拉項目 */
+.dropdown .menu li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+}
+
+.dropdown .menu li button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    padding-left: 30px;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* 懸浮出現 */
+.dropdown:hover .menu {
+    display: block;
+} 
+
+#farmer-products {
+    width: 900px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(145, 145, 145, 0.394);
+}
+
+#farmer-products li {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    margin-right: 15px;
+    transition: .5s;
+}
+
+#farmer-products li:hover {
+    background-color: #e9e9e9;
+}
+
+
+#farmer-products h3, #farmer-products p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+#farmer-products img {
+    max-width: 100px;
+    height: auto;
+}
+
+#farmers {
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(145, 145, 145, 0.394);
+}
+
+#farmers h3 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+#farmers a {
+    margin: 10px 0;
+    color: grey;
+}
+
+#farmers a:hover{
+    color: blue;
+}
+
+#farmers img {
+    width: 100px; height: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+    margin-right: 40px;
+}
+
+#farmers .btns{
+    display: flex;
+    flex-direction: row;
+    margin-left: 380px;
+    margin-top: 50px;
+}
+
+#farmers .btn{
+    float: right;
+    margin-right: 10px;
+
+    display: block;
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    /* line-height: 30px; */
+    background-color: rgb(57, 71, 154);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+
+    border: 0;
+    border-radius: 10px;
+}
+
+#farmers .btn a{
+    color: white;
+    text-decoration: none;
+    line-height: 30px;
+
+}
+
+
+@media screen and (max-width: 1050px) {
+    #farmers {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #farmers img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .btns{
+        justify-content: center;
+    }
+
+    .btnBack{
+        display: none;
+    }
+    
+}
+    </style>
 </head>
 <body>
     <ul class="head-bar">
@@ -16,7 +251,57 @@
         <li><a href="products.html">產品概覽</a></li>
         <li><a href="aboutuUs.html">關於我們</a></li>
     </ul>
+    <div id="farmers"></div>
 
-        
+    <ul id="farmer-products"></ul>
+    <script src="farmers.js"></script>
+    <script src="products.js"></script>
+    
+    <script>
+        // 取得 URL 的 ?farmer=xxx
+        const farmerName = new URLSearchParams(window.location.search).get("farmer");
+    
+        // --------------------
+        // 1️⃣ 渲染農夫資訊
+        // --------------------
+        const farmerContainer = document.getElementById("farmers");
+    
+        // 找到該農夫的資料（只會有一筆）
+        const farmerData = farmers.find(f => f.name === farmerName);
+    
+        if (farmerData) {
+            farmerContainer.innerHTML = `
+                <img src="${farmerData.img}" alt="">
+                <ul>
+                    <li><h3>${farmerData.name}</h3></li>
+                    <li><a href="${farmerData.location}" class="location">茶園位置</a></li>
+                </ul>
+                <ul class="btns">
+                    <li class="btn b2"><a href="live.html" target="_blank">看直播</a></li>
+                    <li class="btn b2"><a href="${farmerData.journalLink}" class="buy">查看日誌</a></li>
+                </ul>
+            `;
+        }
+    
+        // --------------------
+        // 2️⃣ 渲染農夫產品
+        // --------------------
+        const productContainer = document.getElementById("farmer-products");
+    
+        // 找出該農夫的所有產品（可能有多筆）
+        const farmerProducts = products.filter(p => p.farmer === farmerName);
+    
+        farmerProducts.forEach(p => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${p.img}" alt="">
+                <h3>${p.name}</h3>
+                <p>＄${p.price}</p>
+            `;
+            productContainer.appendChild(li);
+        });
+    </script>
+    
+
 </body>
 </html>
