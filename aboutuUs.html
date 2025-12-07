@@ -9,15 +9,23 @@
     <link rel="stylesheet" href="head-bar.css">
     <style>
         @import url('reset.css');
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(240, 240, 240);
-}
 
-header{
-    height: 500px;
-    position: relative;
-}
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(240, 240, 240);
+        }
+
+        .main-content{
+            width: 900px;
+            margin: 0 auto;
+            padding: 40px 80px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(145, 145, 145, 0.394);
+
+            box-sizing: border-box;
+            overflow: hidden;
+        }
 </style>
 </head>
 <body>
@@ -30,7 +38,21 @@ header{
           <li><a href="cart.html">購物車</a></li>
           <li><a href="products.html">產品概覽</a></li>
           <li><a href="aboutuUs.html">關於我們</a></li>
-      </ul>
+    </ul>
+
+    <div class="main-content">
+        <h1 style="margin-bottom: 30px; font-size: 30px;">關於我們</h1>
+        <div style="margin: 0 auto; font-size: 18px; line-height: 1.6;">
+            <p>我們是第一組。<br>組員有：許筠靈、許祐寧、李兆恩、吳芊穎、許展睿、張睿軒</p>
+        </div>
+
+        <h1 style="margin: 50px 0 30px; font-size: 30px;">系統介紹</h1>
+        <div style="margin: 0 auto; font-size: 18px; line-height: 1.6;">
+
+            <p>這個系統是一個以「台灣茶園產品」為主題的購物網站，功能包含產品展示、購物車管理、農夫資訊頁面以及使用者登入功能。整個系統由多個頁面與模組組成，核心技術是 HTML/CSS/JavaScript，並利用 localStorage 管理使用者購物車資料。</p>
+
+        </div>
+    </div>
         
 </body>
 </html>

@@ -62,7 +62,14 @@ header{
     color: gray;
     margin-top: 5px;
     margin-bottom: 15px;
+
+    transition: .2s;
 }
+
+.farmers .location:hover{
+    color: black;
+}
+
 
 .farmers img{
     height: 200px;
