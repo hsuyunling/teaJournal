@@ -36,6 +36,7 @@ function renderCart() {
                     <input type="checkbox" class="check-item" />
                     <div class="control__indicator"></div>
                 </label>
+                <i class="fa-solid fa-trash-can"></i>
                 <h2>${product.farmer}</h2>
                 <img src="${product.img}" alt="">
                 <h3>${product.name}</h3>
@@ -59,6 +60,15 @@ function renderCart() {
         const qtySpan = li.querySelector("span");
         const totalEl = li.querySelector(".total p:last-of-type");
         const checkbox = li.querySelector(".check-item");
+        const trashIcon = li.querySelector(".fa-trash-can");
+
+        trashIcon.addEventListener("click", () => {
+            cart = cart.filter(i => i.productId !== item.productId);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+            alert("商品已刪除 ✅");
+        });
+
 
         li.querySelector(".plus").addEventListener("click", () => {
             item.qty++;

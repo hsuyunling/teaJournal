@@ -77,6 +77,21 @@ h1{
     padding: 20px;
 }
 
+.container .fa-trash-can{
+    float: right;
+    padding: 20px;
+    color: rgb(117, 117, 117);
+
+    transition: .2s;
+}
+
+.container .fa-trash-can:hover{
+    color: rgb(246, 42, 42);
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+
 .container .cart h3{
     margin: 20px 0 10px;
 

@@ -193,7 +193,6 @@ header{
         // --------------------
         const farmerContainer = document.getElementById("farmers");
     
-        // 找到該農夫的資料（只會有一筆）
         const farmerData = farmers.find(f => f.farmer === farmerName);
     
         if (farmerData) {
@@ -211,11 +210,32 @@ header{
         }
     
         // --------------------
-        // 2️⃣ 渲染農夫產品
+        // 2️⃣ localStorage 購物車函式
+        // --------------------
+        function getCart() {
+            return JSON.parse(localStorage.getItem("cart")) || [];
+        }
+    
+        function saveCart(cart) {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    
+        function addToCart(productId) {
+            let cart = getCart();
+            const found = cart.find(item => item.productId === productId);
+            if (found) {
+                found.qty++;
+            } else {
+                cart.push({ productId, qty: 1 });
+            }
+            saveCart(cart);
+            alert("已加入購物車 ✅");
+        }
+    
+        // --------------------
+        // 3️⃣ 渲染農夫產品 & 點擊加入購物車
         // --------------------
         const productContainer = document.getElementById("farmer-products");
-    
-        // 找出該農夫的所有產品（可能有多筆）
         const farmerProducts = products.filter(p => p.farmer === farmerName);
     
         farmerProducts.forEach(p => {
@@ -225,9 +245,16 @@ header{
                 <h3>${p.name}</h3>
                 <p>＄${p.price}</p>
             `;
+    
+            // ✅ 點擊商品 → 加入購物車
+            li.addEventListener("click", () => {
+                addToCart(p.id);
+            });
+    
             productContainer.appendChild(li);
         });
     </script>
+    
     
 
 </body>
