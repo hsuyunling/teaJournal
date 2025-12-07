@@ -1,9 +1,6 @@
 
-let cart = [
-    { productId: 1, qty: 1 },
-    { productId: 3, qty: 2 },
-    { productId: 4, qty: 1 }
-];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
 const cartList = document.getElementById("cart-list");
 const grandTotalEl = document.getElementById("grand-total");
@@ -11,6 +8,21 @@ const selectAllCheckbox = document.getElementById("select-all");
 
 function renderCart() {
     cartList.innerHTML = "";
+
+    const emptyMsg = document.getElementById("empty-cart-msg");
+    const selectAll = document.getElementById("select-all-label");
+
+    // ✅ 購物車是空的
+    if (cart.length === 0) {
+        emptyMsg.style.display = "block";
+        selectAll.style.display = "none";
+        grandTotalEl.textContent = "總金額：＄0";
+        return;
+    }
+
+    // ✅ 有商品
+    emptyMsg.style.display = "none";
+    selectAll.style.display = "inline-block";
 
     cart.forEach(item => {
         const product = products.find(p => p.id === item.productId);

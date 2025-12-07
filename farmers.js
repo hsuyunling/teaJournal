@@ -5,7 +5,7 @@ const farmers = [
         img: "./images/farmer1.jpg",
         location: "#",
         buyLink: "farmerProduct.html?farmer=永安食蛇龜茶園",
-        journalLink: "detailedInformation.html?name=永安食蛇龜茶園"
+        journalLink: "detailedInformation.html?farmer=永安食蛇龜茶園"
     },
 
     {
@@ -14,7 +14,7 @@ const farmers = [
         img: "./images/farmer3.jpg",
         location: "#",
         buyLink: "farmerProduct.html?farmer=永安生態茶園",
-        journalLink: "detailedInformation.html?name=永安生態茶園"
+        journalLink: "detailedInformation.html?farmer=永安生態茶園"
 
     },
 
@@ -24,7 +24,7 @@ const farmers = [
         img: "./images/farmer4.png",
         location: "#",
         buyLink: "farmerProduct.html?farmer=永安水庫茶園",
-        journalLink: "detailedInformation.html?name=永安水庫茶園"
+        journalLink: "detailedInformation.html?farmer=永安水庫茶園"
 
     }
 ]

@@ -4,114 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="head-bar.css">
     <script src="loginCondition.js" defer></script>
 
     <title>Document</title>
     <style>
         @import url('reset.css');
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(240, 240, 240);
-}
-
-.head-bar{
-    margin-right: 50px;
-    width: 100%;
-    height: 50px;
-    background-color: #ffffffa3;
-    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
-
-    text-align: right;
-
-    transition: .5s;
-
-    float: left;
-    position: relative;
-    z-index: 100;
-    box-sizing: border-box;
-    overflow: hidden;
-    margin-bottom: 40px;
-
-    
-}
-
-.head-bar .logo, .head-bar .fa-brands{
-    margin-left: 10px;
-    float: left;
-    line-height: 50px;
-    font-size: 18px;
-
-    text-decoration: none;
-    color: #000;
-}
-
-.head-bar li {
-    float: right;
-    margin-right: 20px;
-    line-height: 50px;
-    height: 100%;
-}
-
-.head-bar li:first-child{
-    margin-right: 100px;
-}
-
-.head-bar li a{
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-
-}
-
-.head-bar li a:hover{
-    color: rgb(57, 71, 154);
-    font-weight: bold;
-}
-
-/* 整個 dropdown */
-.dropdown {
-    position: relative;
-    list-style: none;
-}
-
-/* 下拉選單本體 */
-.dropdown .menu {
-    position: absolute;
-    top: 100%;
-    right: -10px;
-    display: none;        /* 預設隱藏 */
-    background-color: #ffffffa3;
-    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
-
-    border: 1px solid #ccc;
-    border-top: 0;
-    width: 200px;
-}
-
-/* 下拉項目 */
-.dropdown .menu li {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    margin: 0;
-}
-
-.dropdown .menu li button {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0 5px;
-    padding-left: 30px;
-    cursor: pointer;
-    text-align: left;
-}
-
-/* 懸浮出現 */
-.dropdown:hover .menu {
-    display: block;
-}
-    </style>
-    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(240, 240, 240);
+        }
 
         #all-products{
             width: 1000px;
@@ -139,13 +41,32 @@ body{
         .product-item:hover{
             box-shadow: 0 0 13px rgba(135, 135, 135, 0.394);
             background-color: #0f70108e;
-            transform: scale(1.05);
+            transform: scale(0.85) translateY(25px);
+            cursor: pointer;
+
+            position: relative;
         }
         
         .product-item:hover p, .product-item:hover h2, .product-item:hover h3{
             color: white;
 
         }
+
+        .product-item:hover::before{
+            content: '按一下加入購物車';
+            line-height: 35px;
+            font-size: 17px;
+
+            width: 220px;
+            height: 35px;
+            /* background-color: aquamarine; */
+            position: absolute;
+            top: -50px;
+            left: 5px;
+
+            pointer-events: none;
+        }
+
 
         .product-item img{
             width: 130px;
@@ -182,31 +103,68 @@ body{
     <ul class="head-bar">
         <i class="fa-brands fa-envira" style="margin-left: 50px;"></i>
         <a href="index.html" class="logo">茶園日誌</a>
-        <li><a href="login.html">登入</a></li>
-        <li><a href="cart.html">購物車</a></li>
-        <li><a href="products.html">產品概覽</a></li>
-        <li><a href="aboutuUs.html">關於我們</a></li>
-    </ul>
+        <li class="dropdown" id="user-menu">
+          <a href="login.html" id="user-link">登入</a>
+        </li>          
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="products.html">產品概覽</a></li>
+          <li><a href="aboutuUs.html">關於我們</a></li>
+      </ul>
     <ul id="all-products"></ul>
 
     <script src="products.js"></script>
     <script>
     const container = document.getElementById("all-products");
     
-    // 渲染所有產品
-    products.forEach(p => {
-        const li = document.createElement("li");
-        li.innerHTML = `
+
+        
+        // 初始化 localStorage cart
+        function getCart(){
+          return JSON.parse(localStorage.getItem("cart")) || [];
+        }
+        
+        function saveCart(cart){
+          localStorage.setItem("cart", JSON.stringify(cart));
+        }
+        
+        // 加入購物車
+        function addToCart(productId){
+          let cart = getCart();
+          const found = cart.find(item => item.productId === productId);
+        
+          if(found){
+            found.qty++;
+          }else{
+            cart.push({ productId, qty: 1 });
+          }
+        
+          saveCart(cart);
+          alert("已加入購物車 ✅");
+        }
+        
+        // 渲染所有產品
+        products.forEach(p => {
+            
+          const li = document.createElement("li");
+          li.className = "product-item";
+          li.innerHTML = `
             <h3>${p.name}</h3>
             <h2>${p.farmer}</h2>
             <img src="${p.img}" alt="">
             <p>＄${p.price}</p>
-        `;
-        li.className = "product-item";
-        container.appendChild(li);
-    });
-    </script>
-    
+          `;
+        
+          // ✅ 點擊商品 → 加入購物車
+          li.addEventListener("click", () => {
+            console.log("clicked:", p.name);
+
+            addToCart(p.id);
+          });
+        
+          container.appendChild(li);
+        });
+        </script>
+        
         
 </body>
 </html>

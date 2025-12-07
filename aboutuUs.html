@@ -6,6 +6,7 @@
     <script src="loginCondition.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
+    <link rel="stylesheet" href="head-bar.css">
     <style>
         @import url('reset.css');
 body{
@@ -17,114 +18,19 @@ header{
     height: 500px;
     position: relative;
 }
-
-.head-bar{
-    margin-right: 50px;
-    width: 100%;
-    height: 50px;
-    background-color: #ffffffa3;
-    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
-
-    text-align: right;
-
-    transition: .5s;
-
-    float: left;
-    position: relative;
-    z-index: 100;
-    box-sizing: border-box;
-    overflow: hidden;
-    margin-bottom: 40px;
-
-    
-}
-
-.head-bar .logo, .head-bar .fa-brands{
-    margin-left: 10px;
-    float: left;
-    line-height: 50px;
-    font-size: 18px;
-
-    text-decoration: none;
-    color: #000;
-}
-
-.head-bar li {
-    float: right;
-    margin-right: 20px;
-    line-height: 50px;
-    height: 100%;
-}
-
-.head-bar li:first-child{
-    margin-right: 100px;
-}
-
-.head-bar li a{
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-
-}
-
-.head-bar li a:hover{
-    color: rgb(57, 71, 154);
-    font-weight: bold;
-}
-
-/* 整個 dropdown */
-.dropdown {
-    position: relative;
-    list-style: none;
-}
-
-/* 下拉選單本體 */
-.dropdown .menu {
-    position: absolute;
-    top: 100%;
-    right: -10px;
-    display: none;        /* 預設隱藏 */
-    background-color: #ffffffa3;
-    box-shadow: 0 10px 10px rgba(68, 68, 68, 0.164);
-
-    border: 1px solid #ccc;
-    border-top: 0;
-    width: 200px;
-}
-
-/* 下拉項目 */
-.dropdown .menu li {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    margin: 0;
-}
-
-.dropdown .menu li button {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0 5px;
-    padding-left: 30px;
-    cursor: pointer;
-    text-align: left;
-}
-
-/* 懸浮出現 */
-.dropdown:hover .menu {
-    display: block;
-}
-    </style>
+</style>
 </head>
 <body>
     <ul class="head-bar">
         <i class="fa-brands fa-envira" style="margin-left: 50px;"></i>
         <a href="index.html" class="logo">茶園日誌</a>
-        <li><a href="login.html">登入</a></li>
-        <li><a href="cart.html">購物車</a></li>
-        <li><a href="products.html">產品概覽</a></li>
-        <li><a href="aboutuUs.html">關於我們</a></li>
-    </ul>
+        <li class="dropdown" id="user-menu">
+          <a href="login.html" id="user-link">登入</a>
+        </li>          
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="products.html">產品概覽</a></li>
+          <li><a href="aboutuUs.html">關於我們</a></li>
+      </ul>
         
 </body>
 </html>
